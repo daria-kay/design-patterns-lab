@@ -1,25 +1,23 @@
 ﻿using System.Linq;
-using Xrm.ReportUtility.Infrastructure.Transformers.Abstract;
 using Xrm.ReportUtility.Interfaces;
 using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    public class VolumeSumReportTransformer : ReportServiceTransformerBase
+    public class VolumeSumReportTransformer : DataTransformer
     {
-        public VolumeSumReportTransformer(IDataTransformer reportService) : base(reportService) { }
-
-        public override Report TransformData(DataRow[] data)
+        public VolumeSumReportTransformer(IDataTransformer next) : base(next) { }
+        public override Report TransformData(Report report)
         {
-            var report = DataTransformer.TransformData(data);
-
-            report.Rows.Add(new ReportRow
+            if (report.Config.VolumeSum)
             {
-                Name = "Суммарный объём",
-                Value = data.Sum(i => i.Volume * i.Count)
-            });
-
-            return report;
+                report.Rows.Add(new ReportRow
+                {
+                    Name = "Суммарный объём",
+                    Value = report.Data.Sum(i => i.Volume * i.Count)
+                });
+            }
+            return base.TransformData(report);
         }
     }
 }

@@ -10,5 +10,6 @@
 
 1. [Builder](https://github.com/daria-kay/design-patterns-lab/blob/master/Xrm.ReportUtility/Models/ReportConfig.cs)
 2. [Factory method](https://github.com/daria-kay/design-patterns-lab/blob/master/Xrm.ReportUtility/Services/ReportService.cs)
+3. Паттерн Декоратор заменен на [Chain of responsibility](), так как планируется дальнейшее добавление аггрегирующих функций.
 
 

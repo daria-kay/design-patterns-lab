@@ -1,25 +1,23 @@
 ﻿using System.Linq;
-using Xrm.ReportUtility.Infrastructure.Transformers.Abstract;
 using Xrm.ReportUtility.Interfaces;
 using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    public class CountSumReportTransformer : ReportServiceTransformerBase
+    public class CountSumReportTransformer : DataTransformer
     {
-        public CountSumReportTransformer(IDataTransformer reportService) : base(reportService) { }
-        
-        public override Report TransformData(DataRow[] data)
+        public CountSumReportTransformer(IDataTransformer next) : base(next) { }
+        public override Report TransformData(Report report)
         {
-            var report = DataTransformer.TransformData(data);
-
-            report.Rows.Add(new ReportRow
+            if (report.Config.CountSum)
             {
-                Name = "Суммарное количество",
-                Value = data.Sum(i => i.Count)
-            });
-
-            return report;
+                report.Rows.Add(new ReportRow
+                {
+                    Name = "Суммарное количество",
+                    Value = report.Data.Sum(i => i.Count)
+                });
+            }
+            return base.TransformData(report);
         }
     }
 }

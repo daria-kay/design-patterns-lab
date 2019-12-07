@@ -1,20 +1,20 @@
-﻿using Xrm.ReportUtility.Infrastructure.Transformers.Abstract;
 using Xrm.ReportUtility.Interfaces;
 using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Infrastructure.Transformers
 {
-    public class WithDataReportTransformer : ReportServiceTransformerBase
+    public class WithDataReportTransformer : DataTransformer
     {
         public WithDataReportTransformer(IDataTransformer reportService) : base(reportService) { }
 
-        public override Report TransformData(DataRow[] data)
+        public override Report TransformData(Report report)
         {
-            var report = DataTransformer.TransformData(data);
+            if (!report.Config.WithData)
+            {
+                report.Data = new DataRow[0];
+            }
 
-            report.Data = data;
-
-            return report;
+            return base.TransformData(report);
         }
     }
 }

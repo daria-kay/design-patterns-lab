@@ -4,6 +4,6 @@ namespace Xrm.ReportUtility.Interfaces
 {
     public interface IDataTransformer
     {
-        Report TransformData(DataRow[] data);
+        Report TransformData(Report report);
     }
 }

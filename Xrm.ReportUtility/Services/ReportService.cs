@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Xrm.ReportUtility.Infrastructure;
+using Xrm.ReportUtility.Infrastructure.Transformers;
 using Xrm.ReportUtility.Interfaces;
 using Xrm.ReportUtility.Models;
 
@@ -20,14 +20,12 @@ namespace Xrm.ReportUtility.Services
         //делегируется классам-наследникам
         public Report CreateReport()
         {
-            var dataTransformer = DataTransformerCreator.CreateTransformer(_reportConfig);
-
             var text = File.ReadAllText(_reportConfig.FileName); 
             
             //Метод GetDataRows() реализован в каждом классе-наследнике, согласно формату обрабатываемого файла
             var data = GetDataRows(text);
             
-            return dataTransformer.TransformData(data);
+            return DataTransformer.Transform(_reportConfig, data);
         }
         
 
