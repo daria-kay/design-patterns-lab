@@ -15,14 +15,20 @@ namespace Xrm.ReportUtility.Services
             _args = args;
         }
 
+        //Паттерн шаблонный метод.
+        //Этот метод содержит базовый алгоритм создания отчета, где обязанность по извлечению записей из файла
+        //делегируется классам-наследникам
         public Report CreateReport()
         {
             var config = ParseConfig();
             var dataTransformer = DataTransformerCreator.CreateTransformer(config);
 
             var fileName = _args[0];
-            var text = File.ReadAllText(fileName);
+            var text = File.ReadAllText(fileName); 
+            
+            //Метод GetDataRows() реализован в каждом классе-наследнике, согласно формату обрабатываемого файла
             var data = GetDataRows(text);
+            
             return dataTransformer.TransformData(data);
         }
 

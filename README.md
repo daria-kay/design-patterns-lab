@@ -4,7 +4,7 @@
 
 #### Найденные паттерны:
 1. [Декоратор](https://github.com/daria-kay/design-patterns-lab/blob/master/Xrm.ReportUtility/Infrastructure/DataTransformerCreator.cs)
-
-   
+1. [Шаблонный метод](https://github.com/daria-kay/design-patterns-lab/blob/master/Xrm.ReportUtility/Services/ReportServiceBase.cs)
+1. 
 
 
