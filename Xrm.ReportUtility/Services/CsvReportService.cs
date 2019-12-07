@@ -6,9 +6,9 @@ using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Services
 {
-    public class CsvReportService : ReportServiceBase
+    public class CsvReportService : ReportService
     {
-        public CsvReportService(string[] args) : base(args) { }
+        public CsvReportService(ReportConfig reportConfig) : base(reportConfig){}
 
         protected override DataRow[] GetDataRows(string text)
         {

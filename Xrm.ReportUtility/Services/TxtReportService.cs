@@ -6,9 +6,9 @@ using Xrm.ReportUtility.Models;
 
 namespace Xrm.ReportUtility.Services
 {
-    public class TxtReportService : ReportServiceBase
+    public class TxtReportService : ReportService
     {
-        public TxtReportService(string[] args) : base(args){ }
+        public TxtReportService(ReportConfig reportConfig) : base(reportConfig) { }
 
         protected override DataRow[] GetDataRows(string text)
         {

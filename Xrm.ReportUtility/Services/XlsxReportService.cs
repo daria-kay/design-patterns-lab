@@ -2,10 +2,9 @@
 
 namespace Xrm.ReportUtility.Services
 {
-    public class XlsxReportService : ReportServiceBase
+    public class XlsxReportService : ReportService
     {
-        public XlsxReportService(string[] args) : base(args) { }
-
+        public XlsxReportService(ReportConfig reportConfig) : base(reportConfig) { }
         protected override DataRow[] GetDataRows(string text)
         {
             return new DataRow[0];
