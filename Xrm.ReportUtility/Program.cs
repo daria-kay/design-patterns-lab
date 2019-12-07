@@ -25,7 +25,7 @@ namespace Xrm.ReportUtility
         private static IReportService GetReportService(string[] args)
         {
             var filename = args[0];
-
+            
             if (filename.EndsWith(".txt"))
             {
                 return new TxtReportService(args);
