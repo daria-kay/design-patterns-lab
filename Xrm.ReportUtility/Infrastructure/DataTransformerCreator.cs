@@ -6,10 +6,14 @@ namespace Xrm.ReportUtility.Infrastructure
 {
     public static class DataTransformerCreator
     {
+        //Паттерн декоратор.
         public static IDataTransformer CreateTransformer(ReportConfig config)
         {
+            //Инициализация базового (по функционалу) объекта DataTransformer 
             IDataTransformer service = new DataTransformer(config);
 
+            //В строках 17-40 "оборачивание" этого объекта в декраторы, содержащий дополнительный функционал, 
+            //в зависимости от значения полей конфигурационного объекта
             if (config.WithData)
             {
                 service = new WithDataReportTransformer(service);
